@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 		PathRemoveFileSpecA(path);
 	if (argc == 4){
 		char buffer[10000];
-		sprintf(buffer,"echo set PATH=^%%PATH^%%;%s > %s\\%s.bat\n",argv[1],path,argv[3]);
+		sprintf(buffer,"echo set PATH=%s;^%%PATH^%%> %s\\%s.bat\n",argv[1],path,argv[3]);
 		system(buffer);
 		sprintf(buffer,"echo %s %%* >> %s\\%s.bat",argv[2],path,argv[3]);
 		system(buffer);
