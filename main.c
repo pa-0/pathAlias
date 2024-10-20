@@ -9,10 +9,12 @@ int main(int argc, char *argv[])
 		PathRemoveFileSpecA(path);
 	if (argc == 4){
 		char buffer[10000];
+		//TODO: Add flag to hide cmd window
 		sprintf(buffer,"echo set PATH=%s;^%%PATH^%%> %s\\%s.bat\n",argv[1],path,argv[3]);
 		system(buffer);
 		sprintf(buffer,"echo %s %%* >> %s\\%s.bat",argv[2],path,argv[3]);
 		system(buffer);
+		//TODO: Add check to see if batch file exists, and logic to handle failure
 		printf("Batch file (hopefully) created\n");
 	}else if (argc == 3){
 		char buffer[10000];
@@ -22,9 +24,9 @@ int main(int argc, char *argv[])
 	}else{
 		printf("Usage: pathalias <path> <executable> <alias> \n");
 		printf("This will create a batch file that adds <path> to a temporary path, and run the <executable> command, tha file name will be <alias>.bat\n");
-		printf("Exemple: pathalias c:\\soft\\java8 java java8 \n\n");
+		printf("Example: pathalias C:\\Soft\\java8 java java8 \n\n");
 		printf("Usage: pathalias <path\\executable> <alias>\n");
-		printf("This will create a batch file that runs the <path\\executable>, tha file name will be <alias>.bat\n");
+		printf("This will create a batch file that runs the <path>\\<executable>, tha file name will be <alias>.bat\n");
 		printf("Exemple: pathalias c:\\soft\\java8\\java java8");
 	}
     return 0;
